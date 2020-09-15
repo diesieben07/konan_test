@@ -1,7 +1,7 @@
 package de.takeweiland.konan_test
 
 import kotlinx.cinterop.*
-import platform.posix.*;
+import platform.windows.*
 
 actual fun readLine(): String? {
     return kotlin.io.readLine()
@@ -10,8 +10,8 @@ actual fun readLine(): String? {
 @ExperimentalUnsignedTypes
 actual fun terminalWidth(): Int {
     memScoped {
-        val w: winsize = alloc()
-        ioctl(STDOUT_FILENO, TIOCGWINSZ, w.ptr)
-        return w.ws_col.toInt()
+        val csbi: CONSOLE_SCREEN_BUFFER_INFO = alloc()
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), csbi.ptr)
+        return csbi.srWindow.Right - csbi.srWindow.Left + 1
     }
 }
