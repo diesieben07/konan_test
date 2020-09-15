@@ -4,7 +4,7 @@ import kotlinx.cinterop.*
 import platform.windows.*
 import platform.posix.*
 
-internal actual typealias PlatformFilePointer = platform.posix.FILE
+actual typealias PlatformFilePointer = platform.posix.FILE
 
 actual fun terminalWidth(): Int {
     return tryTerminalWidths(

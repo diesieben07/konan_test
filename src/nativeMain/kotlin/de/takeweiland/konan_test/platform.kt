@@ -7,7 +7,7 @@ actual fun readLine(): String? {
     return kotlin.io.readLine()
 }
 
-internal expect class PlatformFilePointer : CPointed
+expect class PlatformFilePointer : CPointed
 
 internal expect inline fun platformPopen(command: String, mode: String): CPointer<PlatformFilePointer>
 internal expect inline fun platformPclose(file: CValuesRef<PlatformFilePointer>): Int
