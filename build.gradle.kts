@@ -61,6 +61,7 @@ kotlin {
             dependsOn(nativeMain)
         }
         val windowsX64Main by getting {
+            dependsOn(nativeMain)
         }
     }
 }
