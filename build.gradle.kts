@@ -46,19 +46,15 @@ kotlin {
             dependsOn(commonMain)
         }
 
-//        val nativePosixMain by creating {
-//            dependsOn(nativeMain)
-//        }
-//
-//        val nativeOtherMain by creating {
-//            dependsOn(nativeMain)
-//        }
-
-        val linuxX64Main by getting {
+        val nativePosixMain by creating {
             dependsOn(nativeMain)
         }
+
+        val linuxX64Main by getting {
+            dependsOn(nativePosixMain)
+        }
         val macosX64Main by getting {
-            dependsOn(nativeMain)
+            dependsOn(nativePosixMain)
         }
         val windowsX64Main by getting {
             dependsOn(nativeMain)

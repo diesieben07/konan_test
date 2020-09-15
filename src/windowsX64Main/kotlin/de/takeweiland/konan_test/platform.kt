@@ -7,12 +7,12 @@ import platform.windows.*
 actual fun terminalWidth(): Int {
     return tryTerminalWidths(
         { terminalWidthWin32() },
-        { terminalWidthPosix() },
         { terminalWidthTput() }
     )
 }
 
 private fun terminalWidthWin32(): Int {
+    println("trying width win32")
     memScoped {
         val csbi: CONSOLE_SCREEN_BUFFER_INFO = alloc()
         val returnValue = GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), csbi.ptr)

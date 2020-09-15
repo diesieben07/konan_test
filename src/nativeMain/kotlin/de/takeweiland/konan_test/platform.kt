@@ -7,28 +7,8 @@ actual fun readLine(): String? {
     return kotlin.io.readLine()
 }
 
-internal fun tryTerminalWidths(vararg toTry: () -> Int): Int {
-    for (t in toTry) {
-        val w = t()
-        if (w > 0) {
-            return w
-        }
-    }
-    return -1
-}
-
-internal fun terminalWidthPosix(): Int {
-    memScoped {
-        val w: winsize = alloc()
-        return if (ioctl(STDOUT_FILENO, TIOCGWINSZ, w.ptr) < 0) {
-            -1
-        } else {
-            w.ws_col.toInt()
-        }
-    }
-}
-
 internal fun terminalWidthTput(): Int {
+    println("trying width tput")
     val fp = popen("tput cols 2>/dev/null", "r")
     if (fp == null) {
         return -1
