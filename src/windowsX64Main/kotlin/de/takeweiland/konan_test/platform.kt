@@ -2,6 +2,7 @@ package de.takeweiland.konan_test
 
 import kotlinx.cinterop.*
 import platform.windows.*
+import platform.posix.*
 
 internal actual typealias PlatformFilePointer = platform.posix.FILE
 
