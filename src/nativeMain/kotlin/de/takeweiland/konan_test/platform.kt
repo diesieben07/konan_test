@@ -7,9 +7,12 @@ actual fun readLine(): String? {
     return kotlin.io.readLine()
 }
 
+internal expect inline fun platformPopen(command: String, mode: String): CPointer<FILE>
+internal expect inline fun platformPclose(file: CValuesRef<FILE>): Int
+
 internal fun terminalWidthTput(): Int {
     println("trying width tput")
-    val fp = popen("tput cols 2>/dev/null", "r")
+    val fp = platformPopen("tput cols 2>/dev/null", "r")
     if (fp == null) {
         return -1
     } else {
@@ -24,7 +27,7 @@ internal fun terminalWidthTput(): Int {
                 }
             }
         } finally {
-            val status = pclose(fp)
+            val status = platformPclose(fp)
             if (!wIfExited(status) || wExitStatus(status) != 0) {
                 return -3
             }

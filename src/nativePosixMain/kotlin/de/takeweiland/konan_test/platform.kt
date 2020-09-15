@@ -3,6 +3,12 @@ package de.takeweiland.konan_test
 import kotlinx.cinterop.*
 import platform.posix.*;
 
+@Suppress("NOTHING_TO_INLINE")
+internal actual inline fun platformPopen(command: String, mode: String): CPointer<FILE> = popen(command, mode)
+
+@Suppress("NOTHING_TO_INLINE")
+internal actual inline fun platformPclose(file: CValuesRef<FILE>): Int = pclose(command, mode)
+
 actual fun terminalWidth(): Int {
     return tryTerminalWidths(
         { terminalWidthPosix() },

@@ -3,7 +3,6 @@ package de.takeweiland.konan_test
 import kotlinx.cinterop.*
 import platform.windows.*
 
-@ExperimentalUnsignedTypes
 actual fun terminalWidth(): Int {
     return tryTerminalWidths(
         { terminalWidthWin32() },
@@ -11,6 +10,12 @@ actual fun terminalWidth(): Int {
 
     )
 }
+
+@Suppress("NOTHING_TO_INLINE")
+internal actual inline fun platformPopen(command: String, mode: String): CPointer<FILE> = _popen(command, mode)
+
+@Suppress("NOTHING_TO_INLINE")
+internal actual inline fun platformPClose(file: CValuesRef<FILE>): Int = _pclose(file)
 
 private fun terminalWidthWin32(): Int {
     println("trying width win32")
