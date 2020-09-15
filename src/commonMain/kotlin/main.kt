@@ -1,5 +1,5 @@
 import de.takeweiland.konan_test.terminalWidth
 
 fun main() {
-    de.takeweiland.konan_test.main()
+    println("The terminal width is ${terminalWidth()}")
 }
