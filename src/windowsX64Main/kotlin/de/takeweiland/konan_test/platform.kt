@@ -3,6 +3,8 @@ package de.takeweiland.konan_test
 import kotlinx.cinterop.*
 import platform.windows.*
 
+internal actual typealias PlatformFilePointer = platform.posix.FILE
+
 actual fun terminalWidth(): Int {
     return tryTerminalWidths(
         { terminalWidthWin32() },

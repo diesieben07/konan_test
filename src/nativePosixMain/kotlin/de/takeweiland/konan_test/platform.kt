@@ -3,6 +3,8 @@ package de.takeweiland.konan_test
 import kotlinx.cinterop.*
 import platform.posix.*;
 
+internal actual typealias PlatformFilePointer = platform.posix._IO_FILE
+
 @Suppress("NOTHING_TO_INLINE")
 internal actual inline fun platformPopen(command: String, mode: String): CPointer<FILE> = popen(command, mode)
 

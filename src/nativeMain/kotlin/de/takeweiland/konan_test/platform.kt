@@ -7,8 +7,10 @@ actual fun readLine(): String? {
     return kotlin.io.readLine()
 }
 
-internal expect inline fun platformPopen(command: String, mode: String): CPointer<FILE>
-internal expect inline fun platformPclose(file: CValuesRef<FILE>): Int
+internal expect class PlatformFilePointer : CPointed
+
+internal expect inline fun platformPopen(command: String, mode: String): CPointer<PlatformFilePointer>
+internal expect inline fun platformPclose(file: CValuesRef<PlatformFilePointer>): Int
 
 internal fun terminalWidthTput(): Int {
     println("trying width tput")
