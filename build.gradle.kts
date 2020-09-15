@@ -21,8 +21,8 @@ kotlin {
 
     val nativeTargets = listOf(
         linuxX64("linuxX64"),
-        macosX64("macosX64")
-//        mingwX64("windowsX64")
+        macosX64("macosX64"),
+        mingwX64("windowsX64")
     )
 
     for (nativeTarget in nativeTargets) {
@@ -60,8 +60,7 @@ kotlin {
         val macosX64Main by getting {
             dependsOn(nativeMain)
         }
-//        val windowsX64Main by getting {
-//            dependsOn(nativeOtherMain)
-//        }
+        val windowsX64Main by getting {
+        }
     }
 }

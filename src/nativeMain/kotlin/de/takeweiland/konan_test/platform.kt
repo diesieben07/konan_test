@@ -1,7 +1,6 @@
 package de.takeweiland.konan_test
 
-import kotlinx.cinterop.alloc
-import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.*
 import platform.posix.*;
 
 actual fun readLine(): String? {
